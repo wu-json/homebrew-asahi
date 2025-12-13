@@ -1,13 +1,29 @@
-# Update curse formula to latest GitHub release
-update-curse force="":
+# Update a formula to latest GitHub release
+# Usage: just update-formula curse
+#        just update-formula curse --force
+update-formula name force="":
     #!/usr/bin/env bash
     set -euo pipefail
 
-    FORMULA="Formula/curse.rb"
+    FORMULA="Formula/{{ name }}.rb"
     FORCE="{{ force }}"
 
+    if [ ! -f "$FORMULA" ]; then
+        echo "Formula not found: $FORMULA"
+        exit 1
+    fi
+
+    # Extract GitHub repo from homepage
+    REPO=$(grep 'homepage' "$FORMULA" | sed 's/.*github.com\/\([^"]*\)".*/\1/')
+    if [ -z "$REPO" ]; then
+        echo "Could not extract GitHub repo from homepage"
+        exit 1
+    fi
+
+    echo "Repository: $REPO"
+
     # Fetch latest version from GitHub
-    VERSION=$(curl -s https://api.github.com/repos/wu-json/curse/releases/latest | jq -r '.tag_name' | sed 's/^v//')
+    VERSION=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" | jq -r '.tag_name' | sed 's/^v//')
     CURRENT=$(grep 'version "' "$FORMULA" | sed 's/.*version "\(.*\)"/\1/')
 
     if [ "$VERSION" = "$CURRENT" ] && [ "$FORCE" != "--force" ]; then
@@ -17,12 +33,15 @@ update-curse force="":
 
     echo "Updating $CURRENT -> $VERSION"
 
+    # Get formula name for asset pattern (lowercase)
+    NAME="{{ name }}"
+
     # Download and compute checksums
     echo "Fetching ARM64 checksum..."
-    ARM_SHA=$(curl -sL "https://github.com/wu-json/curse/releases/download/v${VERSION}/curse_${VERSION}_darwin_arm64.tar.gz" | shasum -a 256 | cut -d' ' -f1)
+    ARM_SHA=$(curl -sL "https://github.com/$REPO/releases/download/v${VERSION}/${NAME}_${VERSION}_darwin_arm64.tar.gz" | shasum -a 256 | cut -d' ' -f1)
 
     echo "Fetching Intel checksum..."
-    INTEL_SHA=$(curl -sL "https://github.com/wu-json/curse/releases/download/v${VERSION}/curse_${VERSION}_darwin_amd64.tar.gz" | shasum -a 256 | cut -d' ' -f1)
+    INTEL_SHA=$(curl -sL "https://github.com/$REPO/releases/download/v${VERSION}/${NAME}_${VERSION}_darwin_amd64.tar.gz" | shasum -a 256 | cut -d' ' -f1)
 
     echo "ARM64:  $ARM_SHA"
     echo "Intel:  $INTEL_SHA"
