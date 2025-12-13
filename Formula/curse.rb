@@ -7,10 +7,10 @@ class Curse < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/wu-json/curse/releases/download/v#{version}/curse_#{version}_darwin_arm64.tar.gz"
-      sha256 "85905202061a0e596ba4dafe618d2bd34704b08ddf1005939e73bfb5cbc6a0bc"
+      sha256 "13385db927a9222456f68e1ec0544747e13f37c38004a70f66a19607c02f58d7"
     else
       url "https://github.com/wu-json/curse/releases/download/v#{version}/curse_#{version}_darwin_amd64.tar.gz"
-      sha256 "4db112dd042588334345b798896b9ff7a2d10a231b20505dee73c10c9fd4b587"
+      sha256 "da5f112ecfbc6eb93136b4fb3a6d978f72beb9422afc92b752ea009ac588d2d9"
     end
   end
 

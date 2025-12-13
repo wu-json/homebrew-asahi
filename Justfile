@@ -1,15 +1,16 @@
 # Update curse formula to latest GitHub release
-update-curse:
+update-curse force="":
     #!/usr/bin/env bash
     set -euo pipefail
 
     FORMULA="Formula/curse.rb"
+    FORCE="{{ force }}"
 
     # Fetch latest version from GitHub
     VERSION=$(curl -s https://api.github.com/repos/wu-json/curse/releases/latest | jq -r '.tag_name' | sed 's/^v//')
     CURRENT=$(grep 'version "' "$FORMULA" | sed 's/.*version "\(.*\)"/\1/')
 
-    if [ "$VERSION" = "$CURRENT" ]; then
+    if [ "$VERSION" = "$CURRENT" ] && [ "$FORCE" != "--force" ]; then
         echo "Already at latest version: $VERSION"
         exit 0
     fi
