@@ -14,6 +14,16 @@ class Curse < Formula
     end
   end
 
+  on_linux do
+    if Hardware::CPU.arm?
+      url "https://github.com/wu-json/curse/releases/download/v#{version}/curse_#{version}_linux_arm64.tar.gz"
+      sha256 "cadf0ef29757bbe0be841731724c73eb692285b2e0fdb3439a7db85c34c8956d"
+    else
+      url "https://github.com/wu-json/curse/releases/download/v#{version}/curse_#{version}_linux_amd64.tar.gz"
+      sha256 "4bb1195a00619d4340fede91b66be6eb1f29651b4fc98fce56d0cbf4a522dd25"
+    end
+  end
+
   def install
     bin.install "curse"
   end
