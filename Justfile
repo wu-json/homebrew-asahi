@@ -75,7 +75,7 @@ update-formula name force="":
 # Update all formulas to latest GitHub releases
 # Usage: just update-all-formulas
 #        just update-all-formulas --force
-update-all-formulas force="":
+update-formulas force="":
     #!/usr/bin/env bash
     set -euo pipefail
     for formula in Formula/*.rb; do
