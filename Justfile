@@ -71,3 +71,15 @@ update-formula name force="":
     sed -i '' "/linux_amd64/{ n; s/sha256 \"[a-f0-9]*\"/sha256 \"$LINUX_AMD_SHA\"/; }" "$FORMULA"
 
     echo "Updated $FORMULA to version $VERSION"
+
+# Update all formulas to latest GitHub releases
+# Usage: just update-all-formulas
+#        just update-all-formulas --force
+update-all-formulas force="":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    for formula in Formula/*.rb; do
+        name=$(basename "$formula" .rb)
+        echo "=== Updating $name ==="
+        just update-formula "$name" "{{ force }}"
+    done
