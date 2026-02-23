@@ -27,10 +27,10 @@ class Pickpocket < Formula
   end
 
   def install
-    bin.install "pickpocket"
+    bin.install "pick"
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/pickpocket --version")
+    assert_match version.to_s, shell_output("#{bin}/pick --version")
   end
 end
