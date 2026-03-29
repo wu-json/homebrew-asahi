@@ -1,28 +1,28 @@
 class Blossom < Formula
   desc "AI conversational language learning app for Japanese, Chinese, and Korean"
   homepage "https://github.com/wu-json/blossom"
-  version "0.0.19"
+  version "0.0.20"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/wu-json/blossom/releases/download/v#{version}/blossom_#{version}_darwin_arm64.tar.gz"
-      sha256 "0619edc9ce6c0f3ccf507012c323ea62321b464bc9a94894a4a2c832f31a079f"
+      sha256 "9f8582e97d17e731ff46b22a69d2ddfcf28679cebbddd928bd4185df2e36f047"
     end
     on_intel do
       url "https://github.com/wu-json/blossom/releases/download/v#{version}/blossom_#{version}_darwin_amd64.tar.gz"
-      sha256 "a5e1dbe1ea1e6012eb2e9bd9bb11e5373083185264609cb25661cffac3129f2e"
+      sha256 "d5af99d79441f885b27e6f8a18ccac6c6a31a186acf19e5cac5eac308d0894bf"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/wu-json/blossom/releases/download/v#{version}/blossom_#{version}_linux_arm64.tar.gz"
-      sha256 "eee6ebc97258bacdf0320b0f235e658f5f17e4b6ad94e12ba736ae3e4f3dd239"
+      sha256 "b66eb9c08ac42bf24c4799be36c61a22fa400244eceddfcd6173e91009440298"
     end
     on_intel do
       url "https://github.com/wu-json/blossom/releases/download/v#{version}/blossom_#{version}_linux_amd64.tar.gz"
-      sha256 "8bf17719ea2014a04d7ea4a104efa4fb717ad0bbc18829a7d50b36319dac9294"
+      sha256 "9415fc07897c67d4476b5da01fbc92f3f8828da5413f03eaa915aeae0b42920c"
     end
   end
 
