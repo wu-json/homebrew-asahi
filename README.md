@@ -4,7 +4,7 @@ My Homebrew tap.
 
 ## Installation
 
-```
+```bash
 brew tap wu-json/asahi
 brew install wu-json/asahi/<formula>
 ```
@@ -20,7 +20,7 @@ brew install wu-json/asahi/<formula>
 
 ### Setup
 
-```
+```bash
 aqua i
 ```
 
@@ -28,12 +28,12 @@ aqua i
 
 To update a formula to the latest GitHub release:
 
-```
+```bash
 just update-formula <name>
 ```
 
 To refresh checksums without a version change:
 
-```
+```bash
 just update-formula <name> --force
 ```

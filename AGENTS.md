@@ -40,7 +40,7 @@ just update-formulas --force
 For `just update-formula` to work, each `Formula/<name>.rb` should:
 
 1. Set `homepage` to `https://github.com/<owner>/<repo>` so the script can discover the GitHub repository.
-2. Declare `version "…"` in the usual Homebrew style.
+2. Write the version literally in each `url` (`.../download/v<version>/<name>_<version>_...`), with no `version` line. `brew audit` flags `version` as redundant because Homebrew reads it from the URL.
 3. Use release assets whose names match  
    `<name>_<version>_darwin_arm64.tar.gz`,  
    `<name>_<version>_darwin_amd64.tar.gz`,  
@@ -48,6 +48,6 @@ For `just update-formula` to work, each `Formula/<name>.rb` should:
    `<name>_<version>_linux_amd64.tar.gz`  
    (with `<name>` lowercase, matching the filename stem).
 
-The script reads the latest release tag from the GitHub API (strips a leading `v`), updates the `version` line, then replaces each `sha256` on the line immediately after the matching `url` for `darwin_arm64`, `darwin_amd64`, `linux_arm64`, and `linux_amd64`.
+The script reads the latest release tag from the GitHub API (strips a leading `v`), reads the current version from the first `url`, rewrites the version in every `url`, then replaces each `sha256` on the line immediately after the matching `url` for `darwin_arm64`, `darwin_amd64`, `linux_arm64`, and `linux_amd64`.
 
 If a formula has no GitHub homepage, nonstandard archive names, or a different layout, update it by hand or extend the `justfile` before relying on automation.

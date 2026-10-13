@@ -24,7 +24,7 @@ update-formula name force="":
 
     # Fetch latest version from GitHub
     VERSION=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" | jq -r '.tag_name' | sed 's/^v//')
-    CURRENT=$(grep 'version "' "$FORMULA" | sed 's/.*version "\(.*\)"/\1/')
+    CURRENT=$(grep -m1 'url "' "$FORMULA" | sed 's/.*releases\/download\/v\([^/]*\)\/.*/\1/')
 
     if [ "$VERSION" = "$CURRENT" ] && [ "$FORCE" != "--force" ]; then
         echo "Already at latest version: $VERSION"
@@ -55,8 +55,9 @@ update-formula name force="":
     echo "Linux ARM64:  $LINUX_ARM_SHA"
     echo "Linux AMD64:  $LINUX_AMD_SHA"
 
-    # Update version
-    sed -i '' "s/version \"$CURRENT\"/version \"$VERSION\"/" "$FORMULA"
+    # Update version in each url (tag and archive name)
+    CURRENT_RE="${CURRENT//./\\.}"
+    sed -i '' "/url \"/{ s/\/v$CURRENT_RE\//\/v$VERSION\//; s/_${CURRENT_RE}_/_${VERSION}_/; }" "$FORMULA"
 
     # Update macOS ARM sha256 (line after darwin_arm64 url)
     sed -i '' "/darwin_arm64/{ n; s/sha256 \"[a-f0-9]*\"/sha256 \"$DARWIN_ARM_SHA\"/; }" "$FORMULA"
