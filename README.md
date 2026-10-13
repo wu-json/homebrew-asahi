@@ -14,6 +14,7 @@ brew install wu-json/asahi/<formula>
 | Formula | Description |
 |---------|-------------|
 | [curse](https://github.com/wu-json/curse) | Dead simple Terminal UI for running processes |
+| [mast](https://github.com/wu-json/mast) | Terminal UI that shows every coding agent running on your machine |
 
 ## Development
 
