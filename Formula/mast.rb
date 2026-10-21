@@ -5,23 +5,23 @@ class Mast < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/wu-json/mast/releases/download/v0.1.1/mast_0.1.1_darwin_arm64.tar.gz"
-      sha256 "f175c00de0f41593b49a37546babae8758a413daa9dc1051cb21d42a989c1bf0"
+      url "https://github.com/wu-json/mast/releases/download/v0.2.1/mast_0.2.1_darwin_arm64.tar.gz"
+      sha256 "8a983d593bba095aacc2c5ffdf1010751dd23bea541a0e8dd4b98937ef6f7026"
     end
     on_intel do
-      url "https://github.com/wu-json/mast/releases/download/v0.1.1/mast_0.1.1_darwin_amd64.tar.gz"
-      sha256 "08acaae4516b7b4da7e1ad8686cc72f6164f2a703d795077635c9fb716a7339e"
+      url "https://github.com/wu-json/mast/releases/download/v0.2.1/mast_0.2.1_darwin_amd64.tar.gz"
+      sha256 "b78569da870f243062809a374bf7c1afbf3cb942cbf0e161c2fb2e1f9405e04f"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/wu-json/mast/releases/download/v0.1.1/mast_0.1.1_linux_arm64.tar.gz"
-      sha256 "caa03679590a7c9c377b4eda26cac47e83eb5eef7a8fdfff70258c50688f92d4"
+      url "https://github.com/wu-json/mast/releases/download/v0.2.1/mast_0.2.1_linux_arm64.tar.gz"
+      sha256 "f86c645bf6fb27215e320642d8c74f0ea266f07edd9775f3d2843f6ea683464a"
     end
     on_intel do
-      url "https://github.com/wu-json/mast/releases/download/v0.1.1/mast_0.1.1_linux_amd64.tar.gz"
-      sha256 "5a9f2185da0e37fc8558d4beec217ea8be3bbfc7fc0a52c183239fb7aca2abf9"
+      url "https://github.com/wu-json/mast/releases/download/v0.2.1/mast_0.2.1_linux_amd64.tar.gz"
+      sha256 "eadf2378d0a89416c9e8b1d71debabf8aa84ddb42e27278478bc6d638f7b758c"
     end
   end
 
